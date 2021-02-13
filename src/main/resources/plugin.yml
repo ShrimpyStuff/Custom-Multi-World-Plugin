@@ -1,0 +1,19 @@
+name: Custom_Multi-World_Plugin
+version: ${project.version}
+main: ca.sajid.custommultiworldplugin.CustomMultiWorldPlugin
+api-version: 1.16
+commands:
+  createworld:
+    description: Creates a new world
+    aliases: create
+    usage: /<command> [Name] [Normal|Nether|End] (AMPLIFIED|FLAT|LARGE_BIOMES)
+    permission: cmwp.createworld
+
+permissions:
+  cmwp.*:
+    description: Permission to use all Custom_Multi-World_Plugin commands
+    default: op
+    children:
+      cmwp.createworld:
+        description: Permission to use the create command
+
