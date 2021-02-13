@@ -1,4 +1,4 @@
-name: Custom_Multi-World_Plugin
+name: CustomMultiWorldPlugin
 version: ${project.version}
 main: ca.sajid.custommultiworldplugin.CustomMultiWorldPlugin
 api-version: 1.16
