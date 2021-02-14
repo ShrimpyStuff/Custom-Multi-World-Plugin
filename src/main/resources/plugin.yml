@@ -8,7 +8,11 @@ commands:
     aliases: [ create ]
     usage: /<command> [name] [normal|nether|end] (AMPLIFIED|FLAT|LARGE_BIOMES)
     permission: cmwp.create
-
+  delete:
+    description: Lets you delete a world
+    aliases: [ deleteworld ]
+    usage: /<command> [name]
+    permission: cmwp.delete
 permissions:
   cmwp.*:
     description: Permission to use all CustomMultiWorldPlugin commands
@@ -16,3 +20,5 @@ permissions:
     children:
       cmwp.create:
         description: Permission to use the create command
+      cmwp.delete:
+        description: Permission to use the delete command

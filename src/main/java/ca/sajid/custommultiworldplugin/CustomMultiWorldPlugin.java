@@ -1,6 +1,7 @@
 package ca.sajid.custommultiworldplugin;
 
 import ca.sajid.custommultiworldplugin.commands.CreateWorld;
+import ca.sajid.custommultiworldplugin.commands.DeleteWorld;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ca.sajid.custommultiworldplugin.util.ModuleManager;
@@ -15,6 +16,7 @@ public final class CustomMultiWorldPlugin extends JavaPlugin {
         plugin = this;
 
         new CreateWorld().register();
+        new DeleteWorld().register();
 
         Utils.log("&a%s v%s enabled!", getName(), getDescription().getVersion());
     }
