@@ -32,6 +32,7 @@ public class DeleteWorld extends BaseCommand {
             }
 
             file.delete();
+            dir.delete();
         }
     }
 
