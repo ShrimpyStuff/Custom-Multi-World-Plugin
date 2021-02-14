@@ -1,6 +1,7 @@
 package ca.sajid.custommultiworldplugin.util;
 
 import ca.sajid.custommultiworldplugin.CustomMultiWorldPlugin;
+import ca.sajid.custommultiworldplugin.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,7 +30,7 @@ public abstract class BaseCommand implements CommandExecutor, TabCompleter {
     @Override
     public final boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (playerOnly && !(sender instanceof Player)) {
-            sender.sendMessage("You must be a player to use this command");
+            sender.sendMessage(Utils.color("&cYou must be a player to use this command"));
             return true;
         }
 
