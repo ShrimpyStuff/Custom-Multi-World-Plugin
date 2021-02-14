@@ -1,7 +1,9 @@
 package ca.sajid.custommultiworldplugin.commands;
 
+import ca.sajid.custommultiworldplugin.Utils;
 import ca.sajid.custommultiworldplugin.util.BaseCommand;
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -21,52 +23,62 @@ public class DeleteWorld extends BaseCommand {
         super("delete");
     }
 
-    private static void deleteRecursively(File directory) {
-        for(File file : directory.listFiles()) {
-            if(file.isDirectory()) {
+    private void deleteRecursively(File dir) {
+        File[] files = dir.listFiles();
+        if (files == null) return;
+
+        for (File file : files) {
+            if (file.isDirectory()) {
                 deleteRecursively(file);
             }
-            else {
-                file.delete();
-            }
+
+            file.delete();
         }
     }
 
     @Override
     public boolean execute(CommandSender sender, Command cmd, String label, String[] args) {
-
-        if (Bukkit.getWorld(args[0]) == null) {
+        Server server = getPlugin().getServer();
+        if (server.getWorld(args[0]) == null) {
             return false;
         }
 
-        List<Player> players = Bukkit.getWorld(args[0]).getPlayers();
+        World world = server.getWorld(args[0]);
+        if (world == null) {
+            sender.sendMessage(Utils.color("&cThat world doesn't exist!"));
+            return true;
+        }
+
+        List<Player> players = world.getPlayers();
 
         if (!players.isEmpty()) {
             for (Player player : players) {
-                player.teleport(Bukkit.getWorld("Lobby").getSpawnLocation());
-                player.sendTitle("World" + args[0], "is getting deleted.", 5, 100, 5);
+                player.teleport(server.getWorlds().get(0).getSpawnLocation());
+                player.sendTitle("World " + args[0], "is getting deleted.", 5, 100, 5);
             }
         }
-        Properties pr = new Properties();
-        String levelName = "";
-        try
-        {
-            File f = new File("server.properties");
+
+        File serverFolder = server.getWorldContainer();
+        String name = world.getName();
+
+        try {
+            File f = new File(serverFolder, "server.properties");
             FileInputStream in = new FileInputStream(f);
-            pr.load(in);
-            levelName = pr.getProperty("level-name");
-        }
-        catch (IOException e)
-        {
-            //I don't have anything to put here
+
+            Properties props = new Properties();
+            props.load(in);
+            String levelName = props.getProperty("level-name");
+
+            if (name.equals(levelName)) {
+                sender.sendMessage(Utils.color("&cYou can't delete the default world!"));
+                return true;
+            }
+        } catch (IOException ignored) {
+            // eh
         }
 
-        if (!Bukkit.getWorld(args[0]).getName().equals(levelName) || !Bukkit.getWorld(args[0]).getName().equals(levelName + "_nether") || !Bukkit.getWorld(args[0]).getName().equals(levelName + "_the_end")) {
-            Bukkit.unloadWorld(args[0], false);
-            deleteRecursively(new File(args[0]));
-        }
-
-
+        server.unloadWorld(args[0], false);
+        deleteRecursively(new File(serverFolder, name));
         return true;
     }
 
@@ -74,12 +86,12 @@ public class DeleteWorld extends BaseCommand {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> options = new ArrayList<>();
 
-            List<World> worlds = Bukkit.getWorlds();
+        List<World> worlds = Bukkit.getWorlds();
 
 
         for (World world : worlds) {
-                options.add(world.getName());
-            }
+            options.add(world.getName());
+        }
 
         return options;
     }
