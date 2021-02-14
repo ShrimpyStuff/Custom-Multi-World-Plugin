@@ -2,7 +2,6 @@ package ca.sajid.custommultiworldplugin.commands;
 
 import ca.sajid.custommultiworldplugin.Utils;
 import ca.sajid.custommultiworldplugin.util.BaseCommand;
-import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -85,8 +84,9 @@ public class DeleteWorld extends BaseCommand {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> options = new ArrayList<>();
+        Server server = getPlugin().getServer();
 
-        List<World> worlds = Bukkit.getWorlds();
+        List<World> worlds = server.getWorlds();
 
 
         for (World world : worlds) {
