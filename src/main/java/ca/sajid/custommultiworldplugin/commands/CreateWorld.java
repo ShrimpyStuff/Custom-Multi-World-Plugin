@@ -14,7 +14,7 @@ import java.util.List;
 public class CreateWorld extends BaseCommand {
 
     public CreateWorld() {
-        super("create");
+        super("createworld");
     }
 
     @Override

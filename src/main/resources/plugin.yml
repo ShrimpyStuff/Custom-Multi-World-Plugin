@@ -2,17 +2,20 @@ name: CustomMultiWorldPlugin
 version: ${project.version}
 main: ca.sajid.custommultiworldplugin.CustomMultiWorldPlugin
 api-version: 1.16
+authors: [ ShrimpyStuff, ElCholoGamer ]
+
 commands:
-  create:
+  createworld:
     description: Creates a new world
     aliases: [ create ]
     usage: /<command> [name] [normal|nether|end] (AMPLIFIED|FLAT|LARGE_BIOMES)
     permission: cmwp.create
-  delete:
+  deleteworld:
     description: Lets you delete a world
-    aliases: [ deleteworld ]
+    aliases: [ delete ]
     usage: /<command> [name]
     permission: cmwp.delete
+
 permissions:
   cmwp.*:
     description: Permission to use all CustomMultiWorldPlugin commands

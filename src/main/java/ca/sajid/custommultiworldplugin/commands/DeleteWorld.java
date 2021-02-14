@@ -20,7 +20,7 @@ import java.util.Properties;
 public class DeleteWorld extends BaseCommand {
 
     public DeleteWorld() {
-        super("delete");
+        super("deleteworld");
     }
 
     private void deleteRecursively(File dir) {
