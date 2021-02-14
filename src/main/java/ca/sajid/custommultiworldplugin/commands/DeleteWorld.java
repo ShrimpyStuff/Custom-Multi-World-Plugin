@@ -29,11 +29,12 @@ public class DeleteWorld extends BaseCommand {
         for (File file : files) {
             if (file.isDirectory()) {
                 deleteRecursively(file);
+            } else {
+                file.delete();
             }
-
-            file.delete();
-            dir.delete();
         }
+        
+        dir.delete();
     }
 
     @Override
