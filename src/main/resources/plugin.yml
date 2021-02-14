@@ -15,7 +15,10 @@ commands:
     aliases: [ delete ]
     usage: /<command> [name]
     permission: cmwp.delete
-
+  wtp:
+    description: Teleports a player to a certain world
+    usage: /<command> [world | player] [player world]
+    permission: cmwp.tp
 permissions:
   cmwp.*:
     description: Permission to use all CustomMultiWorldPlugin commands
@@ -25,3 +28,5 @@ permissions:
         description: Permission to use the create command
       cmwp.delete:
         description: Permission to use the delete command
+      cmwp.tp:
+        description: Permission to use the wtp command
