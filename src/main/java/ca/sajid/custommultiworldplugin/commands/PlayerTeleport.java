@@ -60,7 +60,6 @@ public class PlayerTeleport extends BaseCommand {
             for (World world : worlds) {
                 options.add(world.getName());
             }
-            options.add("~~~~~~~~~~~~~~~~~");
                 for (Player player : server.getOnlinePlayers()) {
                     options.add(player.getName());
                 }
