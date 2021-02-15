@@ -3,6 +3,7 @@ package ca.sajid.custommultiworldplugin;
 import ca.sajid.custommultiworldplugin.commands.CreateWorld;
 import ca.sajid.custommultiworldplugin.commands.DeleteWorld;
 import ca.sajid.custommultiworldplugin.commands.PlayerTeleport;
+import ca.sajid.custommultiworldplugin.modules.RespawnWorld;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ca.sajid.custommultiworldplugin.util.ModuleManager;
@@ -19,6 +20,8 @@ public final class CustomMultiWorldPlugin extends JavaPlugin {
         new CreateWorld().register();
         new DeleteWorld().register();
         new PlayerTeleport().register();
+        
+        modules.load(RespawnWorld.class);
 
         Utils.log("&a%s v%s enabled!", getName(), getDescription().getVersion());
     }
