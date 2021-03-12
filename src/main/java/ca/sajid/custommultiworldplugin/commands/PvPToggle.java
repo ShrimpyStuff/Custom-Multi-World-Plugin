@@ -23,10 +23,12 @@ public class PvPToggle extends BaseCommand {
 
         FileConfiguration pvpconfig = config.get();
 
-        if (!pvpconfig.getBoolean("PvPOn." + player.getWorld().getName())) {
-            pvpconfig.set("PvpOn." + player.getWorld().getName(), true);
+        if (!pvpconfig.getBoolean("pvp_on." + player.getWorld().getName())) {
+            pvpconfig.set("pvp_on." + player.getWorld().getName(), true);
         } else if (pvpconfig.getBoolean("PvPOn." + player.getWorld().getName())) {
-            pvpconfig.set("PvpOn." + player.getWorld().getName(), false);
+            pvpconfig.set("pvp_on." + player.getWorld().getName(), false);
+        } else {
+            pvpconfig.set("pvp_on." + player.getWorld().getName(), true);
         }
 
         config.save();

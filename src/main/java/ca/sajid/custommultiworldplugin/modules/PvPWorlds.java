@@ -20,7 +20,7 @@ public class PvPWorlds extends BaseModule implements Listener {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e) {
         if (!(e.getDamager() instanceof Player) && !(e.getEntity() instanceof Player)) return;
-        if (!(pvpconfig.get().getBoolean("PvPOn." + e.getEntity().getWorld().getName()))) {
+        if (!(pvpconfig.get().getBoolean("pvp_on." + e.getEntity().getWorld().getName()))) {
             e.setCancelled(true);
         }
     }
