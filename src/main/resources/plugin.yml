@@ -19,6 +19,9 @@ commands:
     description: Teleports a player to a certain world
     usage: /<command> [world | player] [player world]
     permission: cmwp.tp
+  pvptoggle:
+    description: Turns on and off pvp
+    permission: cmwp.pvp
 permissions:
   cmwp.*:
     description: Permission to use all CustomMultiWorldPlugin commands
@@ -30,3 +33,5 @@ permissions:
         description: Permission to use the delete command
       cmwp.tp:
         description: Permission to use the wtp command
+      cmwp.pvp:
+        description: Permission to use the pvptoggle command
