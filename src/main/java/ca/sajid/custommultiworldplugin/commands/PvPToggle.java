@@ -1,5 +1,6 @@
 package ca.sajid.custommultiworldplugin.commands;
 
+import ca.sajid.custommultiworldplugin.modules.PvPWorlds;
 import ca.sajid.custommultiworldplugin.util.BaseCommand;
 import ca.sajid.custommultiworldplugin.util.CustomConfig;
 import org.bukkit.command.Command;
@@ -10,10 +11,11 @@ import org.bukkit.entity.Player;
 
 public class PvPToggle extends BaseCommand {
 
-    private static final CustomConfig config = new CustomConfig("PvPConfig.yml");
+
+    private final CustomConfig config = PvPWorlds.getPVPWorlds();
 
     public PvPToggle() {
-        super("pvp");
+        super("pvpToggle", true);
     }
 
 
@@ -21,22 +23,16 @@ public class PvPToggle extends BaseCommand {
     public boolean execute(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
 
-        FileConfiguration pvpconfig = config.get();
+        FileConfiguration pvpConfig = config.get();
 
-        if (!pvpconfig.getBoolean("pvp_on." + player.getWorld().getName())) {
-            pvpconfig.set("pvp_on." + player.getWorld().getName(), true);
-        } else if (pvpconfig.getBoolean("PvPOn." + player.getWorld().getName())) {
-            pvpconfig.set("pvp_on." + player.getWorld().getName(), false);
-        } else {
-            pvpconfig.set("pvp_on." + player.getWorld().getName(), true);
+        if (!pvpConfig.getBoolean("pvp_on." + player.getWorld().getName())) {
+            pvpConfig.set("pvp_on." + player.getWorld().getName(), true);
+        } else if (pvpConfig.getBoolean("pvp_on." + player.getWorld().getName())) {
+            pvpConfig.set("pvp_on." + player.getWorld().getName(), false);
         }
 
         config.save();
 
         return false;
-    }
-
-    public static CustomConfig getPVPWorlds() {
-        return config;
     }
 }

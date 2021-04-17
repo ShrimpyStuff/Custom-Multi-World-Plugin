@@ -19,7 +19,7 @@ commands:
     description: Teleports a player to a certain world
     usage: /<command> [world | player] [player world]
     permission: cmwp.tp
-  pvptoggle:
+  pvpToggle:
     description: Turns on and off pvp
     permission: cmwp.pvp
 permissions:

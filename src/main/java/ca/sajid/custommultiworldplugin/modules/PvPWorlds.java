@@ -1,6 +1,5 @@
 package ca.sajid.custommultiworldplugin.modules;
 
-import ca.sajid.custommultiworldplugin.commands.PvPToggle;
 import ca.sajid.custommultiworldplugin.util.BaseModule;
 import ca.sajid.custommultiworldplugin.util.CustomConfig;
 import org.bukkit.entity.Player;
@@ -10,7 +9,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class PvPWorlds extends BaseModule implements Listener {
 
-    public static CustomConfig pvpconfig = PvPToggle.getPVPWorlds();
+    private static final CustomConfig config = new CustomConfig("PvPConfig.yml");
 
     @Override
     public void onEnable() {
@@ -19,9 +18,17 @@ public class PvPWorlds extends BaseModule implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e) {
-        if (!(e.getDamager() instanceof Player) && !(e.getEntity() instanceof Player)) return;
-        if (!(pvpconfig.get().getBoolean("pvp_on." + e.getEntity().getWorld().getName()))) {
-            e.setCancelled(true);
+        config.reload();
+        if (e.getDamager() instanceof Player){
+            if (e.getEntity() instanceof Player) {
+                if (!(config.get().getBoolean("pvp_on." + e.getEntity().getWorld().getName()))) {
+                    e.setCancelled(true);
+                }
+            }
         }
+    }
+
+    public static CustomConfig getPVPWorlds() {
+        return config;
     }
 }
