@@ -31,7 +31,7 @@ public class PlayerTeleport extends BaseCommand {
             Player player = (Player) sender;
             player.teleport(server.getWorld(args[0]).getSpawnLocation());
         }
-        if (args.length > 2) {
+        if (args.length >= 2) {
             if (server.getWorld(args[1]) == null) {
                 sender.sendMessage(Utils.color("&cThat world doesn't exist!"));
                 return true;

@@ -8,7 +8,7 @@ commands:
   createworld:
     description: Creates a new world
     aliases: [ create ]
-    usage: /<command> [name] [normal|nether|end] (AMPLIFIED|FLAT|LARGE_BIOMES)
+    usage: /<command> [name] [normal|nether|end] (AMPLIFIED|FLAT|LARGE_BIOMES) [survival|creative|adventure|spectator]
     permission: cmwp.create
   deleteworld:
     description: Lets you delete a world

@@ -4,6 +4,7 @@ import ca.sajid.custommultiworldplugin.commands.CreateWorld;
 import ca.sajid.custommultiworldplugin.commands.DeleteWorld;
 import ca.sajid.custommultiworldplugin.commands.PlayerTeleport;
 import ca.sajid.custommultiworldplugin.commands.PvPToggle;
+import ca.sajid.custommultiworldplugin.modules.GamemodeModule;
 import ca.sajid.custommultiworldplugin.modules.PvPWorlds;
 import ca.sajid.custommultiworldplugin.modules.RespawnWorld;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,6 +27,7 @@ public final class CustomMultiWorldPlugin extends JavaPlugin {
         
         modules.load(RespawnWorld.class);
         modules.load(PvPWorlds.class);
+        modules.load(GamemodeModule.class);
 
         Utils.log("&a%s v%s enabled!", getName(), getDescription().getVersion());
     }

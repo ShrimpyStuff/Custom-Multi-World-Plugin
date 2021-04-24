@@ -1,7 +1,9 @@
 package ca.sajid.custommultiworldplugin.commands;
 
 import ca.sajid.custommultiworldplugin.Utils;
+import ca.sajid.custommultiworldplugin.modules.GamemodeModule;
 import ca.sajid.custommultiworldplugin.util.BaseCommand;
+import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
@@ -37,7 +39,12 @@ public class CreateWorld extends BaseCommand {
             return true;
         }
 
+        if (args[3] == null) {
+            args[3] = "Adventure";
+        }
+
         wc.createWorld();
+        GamemodeModule.getWorldGamemode().get().set("gamemode." + args[0], args[3]);
         return true;
     }
 
@@ -52,6 +59,10 @@ public class CreateWorld extends BaseCommand {
         } else if (args.length == 3) {
             for(WorldType type : WorldType.values()) {
                 options.add(type.name().toLowerCase());
+            }
+        } else if (args.length == 4) {
+            for (GameMode mode : GameMode.values()) {
+                options.add(mode.name());
             }
         }
 
