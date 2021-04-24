@@ -45,6 +45,7 @@ public class CreateWorld extends BaseCommand {
 
         wc.createWorld();
         GamemodeModule.getWorldGamemode().get().set("gamemode." + args[0], args[3]);
+        GamemodeModule.getWorldGamemode().save();
         return true;
     }
 
