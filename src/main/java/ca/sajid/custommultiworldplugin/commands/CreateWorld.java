@@ -28,7 +28,7 @@ public class CreateWorld extends BaseCommand {
         try {
             wc.environment(World.Environment.valueOf(args[1].toUpperCase()));
         } catch (IllegalArgumentException e) {
-            sender.sendMessage(Utils.color("&cInvalid world enviroment!"));
+            sender.sendMessage(Utils.color("&cInvalid world environment!"));
             return true;
         }
 
